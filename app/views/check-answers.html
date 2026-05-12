@@ -1,0 +1,26 @@
+{% extends "layouts/main.html" %}
+{% block pageTitle %}Check your answers{% endblock %}
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Check your answers</h1>
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Full name" },
+          value: { text: data['full-name'] },
+          actions: { items: [{ href: "/name", text: "Change", visuallyHiddenText: "name" }] }
+        },
+        {
+          key: { text: "Over 18" },
+          value: { text: data['over-18'] },
+          actions: { items: [{ href: "/eligible", text: "Change", visuallyHiddenText: "age" }] }
+        }
+      ]
+    }) }}
+    <form action="/confirmation" method="post">
+      {{ govukButton({ text: "Accept and send" }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}
